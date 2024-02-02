@@ -91,9 +91,9 @@ void FD_ZERO(fd_set *set);// fd_set一共有1024 bit, 全部初始化为0
 ```c
 #include <poll.h>
 struct pollfd {
-int fd; /* 委托内核检测的文件描述符 */
-short events; /* 委托内核检测文件描述符的什么事件 */
-short revents; /* 文件描述符实际发生的事件 */
+    int fd; /* 委托内核检测的文件描述符 */
+    short events; /* 委托内核检测文件描述符的什么事件 */
+    short revents; /* 文件描述符实际发生的事件 */
 };
 struct pollfd myfd;
 myfd.fd = 5;
@@ -108,7 +108,7 @@ int poll(struct pollfd *fds, nfds_t nfds, int timeout);
         >0 : 阻塞的时长
     - 返回值：
         -1 : 失败
-        >0（n） : 成功,n表示检测到集合中有n个文件描述符发生变化
+        >0 (n) : 成功,n表示检测到集合中有n个文件描述符发生变化
 
 ```
 
@@ -138,9 +138,9 @@ struct epoll_event {
     epoll_data_t data; /* User data variable */
 };
 常见的Epoll检测事件：
-- EPOLLIN
-- EPOLLOUT
-- EPOLLERR
+    - EPOLLIN
+    - EPOLLOUT
+    - EPOLLERR
 // 对epoll实例进行管理：添加文件描述符信息，删除信息，修改信息
 int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);
 - 参数：
@@ -152,8 +152,7 @@ int epoll_ctl(int epfd, int op, int fd, struct epoll_event *event);
     - fd : 要检测的文件描述符
     - event : 检测文件描述符什么事情
 // 检测函数
-int epoll_wait(int epfd, struct epoll_event *events, int maxevents, int
-timeout);
+int epoll_wait(int epfd, struct epoll_event *events, int maxevents, int timeout);
 - 参数：
     - epfd : epoll实例对应的文件描述符
     - events : 传出参数，保存了发送了变化的文件描述符的信息
