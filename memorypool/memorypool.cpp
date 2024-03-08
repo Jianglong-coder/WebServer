@@ -82,8 +82,6 @@ inline void MemoryPool::deAllocate(Slot *p)
     }
 }
 
-
-
 MemoryPool &getMemoryPool(int id)
 {
     static MemoryPool memorypool_[64];
